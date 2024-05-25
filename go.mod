@@ -1,4 +1,4 @@
-module github.com/DanielCok17/xcok-webapi.git
+module github.com/DanielCok17/xcok-webapi
 
 go 1.22.1
 
