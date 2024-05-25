@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  mongo_express:
+    image: mongo-express
+    container_name: mongo_express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: host.docker.internal
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_BASICAUTH: "false" # Disable basic authentication
+    networks:
+      - mongo-network
+
+networks:
+  mongo-network:
+    driver: bridge
