@@ -22,16 +22,18 @@ switch ($command) {
         try {
             mongo up --detach
             go run ${ProjectRoot}/cmd/ambulance-api-service
+        } finally {
+          mongo down
+        }
     }
-    finally {
-        mongo down
-    }
-    }
-    "mongo" {
-        mongo up
+        "mongo" {
+    mongo up
     }
     "openapi" {
         docker run --rm -ti -v ${ProjectRoot}:/local openapitools/openapi-generator-cli generate -c /local/scripts/generator-cfg.yaml
+    }
+    "docker" {
+       docker build -t rbalcercik/reko-wl-webapi:local-build -f ${ProjectRoot}/build/docker/Dockerfile .
     }
     default {
         throw "Unknown command: $command"
